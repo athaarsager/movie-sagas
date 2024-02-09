@@ -1,4 +1,6 @@
 function MovieDetails() {
+
+    // action.type: "GET_DETAILS"
     return (
         <>
         </>
