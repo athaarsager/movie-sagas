@@ -27,7 +27,8 @@ function* fetchAllMovies() {
 function* getDetailsSaga() {
   try {
     // Receive movie id in action.payload. Send this to router in url
-    const response = yield axios.get(`/api/movies/${action.payload}`)
+    const response = yield axios.get(`/api/movies/${action.payload}`);
+    yield put({type: "DISPLAY_MOVIE_DETAILS", payload: response.data});
   } catch (error) {
     console.error("ERROR in getDetailsSaga GET:", error);
   }
