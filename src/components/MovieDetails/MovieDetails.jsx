@@ -11,10 +11,11 @@ function MovieDetails() {
 
     // Tell the database what movie info to grab and put in store on page load. Redux updates and React renders
     useEffect(() => {
-        dispatch({type: "GET_DETAILS", payload: movie_id});
+        dispatch({ type: "GET_DETAILS", payload: movie_id });
     }, []);
 
     return (
+
         <div data-testid="movieDetails">
             <h2>{movieDetails.title}</h2>
             <img src={movieDetails.poster} />
@@ -23,6 +24,7 @@ function MovieDetails() {
             <p><strong>Genres:</strong><em> {movieDetails.genres}</em></p>
             <button data-testid="toList" onClick={() => history.goBack()}>Back to Movie List</button>
         </div>
+
     )
 }
 
