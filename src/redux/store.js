@@ -24,7 +24,7 @@ function* fetchAllMovies() {
   }
 }
 
-function* getDetailsSaga() {
+function* getDetailsSaga(action) {
   try {
     // Receive movie id in action.payload. Send this to router in url
     const response = yield axios.get(`/api/movies/${action.payload}`);
@@ -60,7 +60,7 @@ const genres = (state = [], action) => {
 const movieDetails = (state = [], action) => {
   switch(action.type) {
     case "DISPLAY_MOVIE_DETAILS":
-      return action.payload;
+      return action.payload[0];
     default:
   return state;
   }

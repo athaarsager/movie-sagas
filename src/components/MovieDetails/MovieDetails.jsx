@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+
 function MovieDetails() {
     const dispatch = useDispatch();
     const movieDetails = useSelector(store => store.movieDetails);
@@ -9,12 +10,15 @@ function MovieDetails() {
 
     useEffect(() => {
         dispatch({type: "GET_DETAILS", payload: movie_id});
-    })
+    }, []);
 
-    // action.type: "GET_DETAILS"
     return (
-        <>
-        </>
+        <div data-testid="movieDetails">
+            <h2>{movieDetails.title}</h2>
+            <img src={movieDetails.poster} />
+            <p>{movieDetails.description}</p>
+            <p>Genres: {movieDetails.genres}</p>
+        </div>
     )
 }
 
