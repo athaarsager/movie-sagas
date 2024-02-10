@@ -31,7 +31,9 @@ function AddMovie() {
                 {genres.map(genre => (
                     <option value={genre.name}>{genre.name}</option>
                 ))}
-            </select>
+            </select><br/>
+            <button>Save</button>
+            <button type="button">Cancel</button>
         </form>
     )
 }
