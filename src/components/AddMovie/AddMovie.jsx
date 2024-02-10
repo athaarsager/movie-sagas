@@ -1,10 +1,16 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function AddMovie() {
     const dispatch = useDispatch();
     const history = useHistory();
     const genres = useSelector(store => store.genres);
+
+    //need to fetch genres right away so drop down has something to display
+    useEffect(() => {
+        //Path="FETCH_GENRES"
+    }, []);
 
     return (
         <form>
