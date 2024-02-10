@@ -10,6 +10,7 @@ function AddMovie() {
     //need to fetch genres right away so drop down has something to display
     useEffect(() => {
         //Path="FETCH_GENRES"
+         dispatch({type: "FETCH_GENRES"});
     }, []);
 
     return (
@@ -22,8 +23,10 @@ function AddMovie() {
             <input id="description" name="description" type="text" placeholder="Kung Fu Panda is a children's animated movie starring Jack Black as the titular character: Po. It follows Po on his quest to become the Dragon Warrior..."/><br/>
             <label htmlFor="genre">Genre</label><br/>
             <select id="genre" name="genre">
+                {/* Selected sets the below option as the default. Disabled prevents users from clicking it. Hidden prevents it from showing up in the dropdown menu */}
+                <option value="" selected disabled hidden>--Select Genre--</option>
                 {genres.map(genre => (
-                    <option value={genre}>{genre}</option>
+                    <option value={genre.name}>{genre.name}</option>
                 ))}
             </select>
         </form>
