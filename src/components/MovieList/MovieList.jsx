@@ -20,7 +20,7 @@ function MovieList() {
           return (
             <div data-testid='movieItem' key={movie.id}>
               <h3>{movie.title}</h3>
-              <img data-testid="toDetails" onClick={() => history.push(`/${movie.id}`)} src={movie.poster} alt={movie.title}/>
+              <img data-testid="toDetails" onClick={() => history.push(`/movies/${movie.id}`)} src={movie.poster} alt={movie.title}/>
             </div>
           );
         })}
