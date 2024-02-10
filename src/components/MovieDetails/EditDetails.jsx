@@ -45,7 +45,7 @@ function EditDetails() {
         poster: movieDetails.poster || savedMovieData.poster,
         description: movieDetails.description || savedMovieData.description,
         genre_id: movieDetails.genre_id || savedMovieData.genre_id,
-
+        id: params.movie_id
     });
 
 
@@ -103,7 +103,7 @@ function EditDetails() {
                         <option key={genre.id} value={genre.id}>{genre.name}</option>
                     ))}
                 </select><br />
-                <button>Save</button>
+                <button onClick={submitChanges}>Save</button>
                 <button onClick={() => history.goBack()} type="button">Cancel (Return to Home)</button>
             </form>
         </>
