@@ -13,9 +13,14 @@ function AddMovie() {
          dispatch({type: "FETCH_GENRES"});
     }, []);
     // TO-DO:
-    // Make form fields required
-    // Add buttons specified in instructions
     // Make dispatch work
+
+    const addMovie = (e) => {
+        e.preventDefault();
+        // Path="ADD_MOVIE"
+        // Send all the movie info as an object
+    }
+
     return (
         <form>
             <label htmlFor="title">Movie Title</label><br/>
