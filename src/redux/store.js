@@ -28,7 +28,7 @@ function* fetchAllMovies() {
 function* fetchGenresSaga() {
   try {
     const response = yield axios.get("/api/genres");
-    
+    yield put({ type: "SET_GENRES", payload: response.data});
   } catch (error) {
     console.error("ERROR in fetchGenresSaga:", error);
   }
@@ -38,7 +38,7 @@ function* getDetailsSaga(action) {
   try {
     // Receive movie id in action.payload. Send this to router in url
     const response = yield axios.get(`/api/movies/${action.payload}`);
-    yield put({type: "DISPLAY_MOVIE_DETAILS", payload: response.data});
+    yield put({ type: "DISPLAY_MOVIE_DETAILS", payload: response.data });
   } catch (error) {
     console.error("ERROR in getDetailsSaga GET:", error);
   }
@@ -68,11 +68,11 @@ const genres = (state = [], action) => {
 }
 
 const movieDetails = (state = [], action) => {
-  switch(action.type) {
+  switch (action.type) {
     case "DISPLAY_MOVIE_DETAILS":
       return action.payload[0];
     default:
-  return state;
+      return state;
   }
 }
 
