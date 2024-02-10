@@ -7,20 +7,30 @@ function AddMovie() {
     const dispatch = useDispatch();
     const history = useHistory();
     const genres = useSelector(store => store.genres);
-    const [newMovie, setNewMovie] = useState({});
+    const [newMovie, setNewMovie] = useState({
+        title: "",
+        poster: "",
+        description: "",
+        genre_id: ""
+    });
 
-    //need to fetch genres right away so drop down has something to display
-    useEffect(() => {
-        //Path="FETCH_GENRES"
-         dispatch({type: "FETCH_GENRES"});
-    }, []);
-    // TO-DO:
-    // Make dispatch work
+    const handleChange = (e) => {
+        
+        // Can't just alter object keys directly
+        // This variable stores the name and value from the target
+        const { name, value } = e.target;
+
+        // This populates the newMovie object with all other info using the spread operator, 
+        // and adds the values declared in the object above
+        setNewMovie((currentInfo) => ({ ...currentInfo, [name]: value}));
+
+        // Potentially add input validation here
+    }
 
     const addMovie = (e) => {
         e.preventDefault();
-        // Path="ADD_MOVIE"
         // Send all the movie info as an object
+        alert(JSON.stringify(newMovie));
         dispatch({type: "ADD_MOVIE", payload: newMovie });
         Swal.fire({
             title: "Success!",
@@ -31,23 +41,31 @@ function AddMovie() {
         history.push("/");
     }
 
+    //need to fetch genres right away so drop down has something to display
+    useEffect(() => {
+        //Path="FETCH_GENRES"
+         dispatch({type: "FETCH_GENRES"});
+    }, []);
+
+    
+
     return (
         <form>
             <label htmlFor="title">Movie Title</label><br/>
-            <input id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={(e) => setNewMovie({title: e.target.value})} required/><br/>
+            <input className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={handleChange} required/><br/>
             <label htmlFor="url">Poster Url</label><br/>
-            <input id="url" name="url" type="url" placeholder="https://m.media-amazon.com/images/I/51XhnMdSQdL._AC_UF894,1000_QL80_.jpg" value={newMovie.poster} onChange={(e) => setNewMovie({poster: e.target.value})} required/><br/>
+            <input id="url" name="url" type="url" placeholder="https://m.media-amazon.com/images/I/51XhnMdSQdL._AC_UF894,1000_QL80_.jpg" value={newMovie.poster} onChange={handleChange} required/><br/>
             <label htmlFor="description">Description</label><br/>
-            <input id="description" name="description" type="text" placeholder="Kung Fu Panda is a children's animated movie starring Jack Black as the titular character: Po. It follows Po on his quest to become the Dragon Warrior..." value={newMovie.description} onChange={(e) => setNewMovie({description: e.target.value})} required/><br/>
+            <input id="description" name="description" type="text" placeholder="Kung Fu Panda is a children's animated movie starring Jack Black as the titular character: Po. It follows Po on his quest to become the Dragon Warrior..." value={newMovie.description} onChange={handleChange} required/><br/>
             <label htmlFor="genre">Genre</label><br/>
-            <select id="genre" name="genre" required>
+            <select id="genre" name="genre_id" onChange={handleChange} required>
                 {/* Selected sets the below option as the default. Disabled prevents users from clicking it. Hidden prevents it from showing up in the dropdown menu */}
                 <option value="" selected disabled hidden>--Select Genre--</option>
                 {genres.map(genre => (
-                    <option onClick={(e) => setNewMovie({genre_id: genre.id})} value={genre.name}>{genre.name}</option>
+                    <option key={genre.id} value={genre.name}>{genre.name}</option>
                 ))}
             </select><br/>
-            <button>Save</button>
+            <button onClick={addMovie}>Save</button>
             <button type="button">Cancel</button>
         </form>
     )
