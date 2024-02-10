@@ -24,7 +24,7 @@ function MovieList() {
       <section className="movies">
         {movies.map(movie => {
           return (
-            <Card sx={{width: 300}} data-testid='movieItem' key={movie.id} onClick={() => history.push(`/movies/${movie.id}`)}>
+            <Card variant="outlined" sx={{width: 300}} data-testid='movieItem' key={movie.id} onClick={() => history.push(`/movies/${movie.id}`)}>
                 <CardMedia component="img" image={movie.poster} title={movie.title} sx={{ height: 450}}/>
               <CardContent>
                 <Typography variant="h4" component="div">{movie.title}</Typography>
