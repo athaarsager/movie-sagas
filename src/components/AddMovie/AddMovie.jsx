@@ -54,15 +54,15 @@ function AddMovie() {
             <label htmlFor="title">Movie Title</label><br/>
             <input className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={handleChange} required/><br/>
             <label htmlFor="url">Poster Url</label><br/>
-            <input id="url" name="url" type="url" placeholder="https://m.media-amazon.com/images/I/51XhnMdSQdL._AC_UF894,1000_QL80_.jpg" value={newMovie.poster} onChange={handleChange} required/><br/>
+            <input id="url" name="poster" type="url" placeholder="https://m.media-amazon.com/images/I/51XhnMdSQdL._AC_UF894,1000_QL80_.jpg" value={newMovie.poster} onChange={handleChange} required/><br/>
             <label htmlFor="description">Description</label><br/>
             <input id="description" name="description" type="text" placeholder="Kung Fu Panda is a children's animated movie starring Jack Black as the titular character: Po. It follows Po on his quest to become the Dragon Warrior..." value={newMovie.description} onChange={handleChange} required/><br/>
             <label htmlFor="genre">Genre</label><br/>
             <select id="genre" name="genre_id" onChange={handleChange} required>
-                {/* Selected sets the below option as the default. Disabled prevents users from clicking it. Hidden prevents it from showing up in the dropdown menu */}
-                <option value="" selected disabled hidden>--Select Genre--</option>
+                {/*  Hidden prevents option from showing up in the dropdown menu and allows it to be the default value */}
+                <option hidden>--Select Genre--</option>
                 {genres.map(genre => (
-                    <option key={genre.id} value={genre.name}>{genre.name}</option>
+                    <option key={genre.id} value={genre.id}>{genre.name}</option>
                 ))}
             </select><br/>
             <button onClick={addMovie}>Save</button>
