@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// GET all movies:
+
 router.get('/', (req, res) => {
   const query = `
     SELECT * FROM "movies"
@@ -15,6 +17,31 @@ router.get('/', (req, res) => {
       console.log('ERROR: Get all movies', err);
       res.sendStatus(500)
     })
+
+});
+
+// GET details of single movie:
+router.get("/:id", (req, res) => {
+  const movieId = req.params.id;
+
+  // Use STRING_AGG to combine multiple rows into one. Otherwise, will get multiple rows of the same movie if it has multiple genres
+  // JSON_AGG is another great alternative if I want the combined rows to be an array I can iterate over
+  const queryText = `
+  SELECT "movies"."title", "movies"."poster", "movies"."description", STRING_AGG("genres"."name", ', ') AS "genres" FROM "movies"
+  JOIN "movies_genres" ON "movies_genres"."movie_id" = "movies"."id"
+  JOIN "genres" ON "genres"."id" = "movies_genres"."genre_id"
+  WHERE "movies"."id" = $1
+  GROUP BY "movies"."title", "movies"."poster", "movies"."description";
+  `;
+  pool.query(queryText, [movieId])
+  .then(result => {
+    // Need to send the result back to store for updating then rendering
+    res.send(result.rows);
+  })
+  .catch(error => {
+    console.error("ERROR in server GET for movie details:", error);
+    res.sendStatus(500);
+  });
 
 });
 
