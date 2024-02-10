@@ -29,6 +29,7 @@ function MovieDetails() {
             <p>{movieDetails.description}</p>
             <p><strong>Genres:</strong><em> {movieDetails.genres}</em></p>
             <button data-testid="toList" onClick={() => history.goBack()}>Back to Movie List</button>
+            <button onClick={() => history.push(`/movie/${params.movie_id}/edit`)}>Edit</button>
         </div>
 
     )
