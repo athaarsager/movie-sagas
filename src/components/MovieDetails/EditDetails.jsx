@@ -8,11 +8,12 @@ function EditDetails() {
     const history = useHistory();
     const params = useParams();
     const genres = useSelector(store => store.genres);
+    const movieDetails = useSelector(store => store.movieDetails);
     const [movie, setMovie] = useState({
-        title: "",
-        poster: "",
-        description: "",
-        genre_id: ""
+        title: movieDetails.title,
+        poster: movieDetails.poster,
+        description: movieDetails.description,
+        genre_id: movieDetails.genre_id
     });
 
     const handleChange = (e) => {
@@ -32,6 +33,7 @@ function EditDetails() {
     useEffect(() => {
         //Path="FETCH_GENRES"
          dispatch({type: "FETCH_GENRES"});
+         dispatch({ type: "GET_DETAILS", payload: params.movie_id });
     }, []);
 
     return (

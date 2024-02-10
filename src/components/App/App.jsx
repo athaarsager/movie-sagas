@@ -16,7 +16,7 @@ function App() {
         <Route path="/movies/:movie_id">
           <MovieDetails />
         </Route>
-        <Route path="/movies/:movie_id/edit">
+        <Route path="/movie/:movie_id/edit">
           <EditDetails />
         </Route>
         <Route path="/add_movie">
