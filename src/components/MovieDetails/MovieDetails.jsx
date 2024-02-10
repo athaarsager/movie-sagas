@@ -18,7 +18,7 @@ function MovieDetails() {
 
         <div data-testid="movieDetails">
             <h2>{movieDetails.title}</h2>
-            <img src={movieDetails.poster} />
+            <img src={movieDetails.poster} alt={movieDetails.title} />
             <p><strong>Details:</strong></p>
             <p>{movieDetails.description}</p>
             <p><strong>Genres:</strong><em> {movieDetails.genres}</em></p>
