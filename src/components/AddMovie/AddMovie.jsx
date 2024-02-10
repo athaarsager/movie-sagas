@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 function AddMovie() {
     const dispatch = useDispatch();
@@ -20,7 +21,14 @@ function AddMovie() {
         e.preventDefault();
         // Path="ADD_MOVIE"
         // Send all the movie info as an object
-        dispatch({type: "ADD_MOVIE", })
+        dispatch({type: "ADD_MOVIE", payload: newMovie });
+        Swal.fire({
+            title: "Success!",
+            text: "Movie Added! Returning to Main Page",
+            icon: "success",
+            confirmButtonColor: "#000080"
+          });
+        history.push("/");
     }
 
     return (
