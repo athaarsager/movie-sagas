@@ -30,7 +30,6 @@ function AddMovie() {
     const addMovie = (e) => {
         e.preventDefault();
         // Send all the movie info as an object
-        alert(JSON.stringify(newMovie));
         dispatch({type: "ADD_MOVIE", payload: newMovie });
         Swal.fire({
             title: "Success!",
@@ -66,7 +65,7 @@ function AddMovie() {
                 ))}
             </select><br/>
             <button onClick={addMovie}>Save</button>
-            <button type="button">Cancel</button>
+            <button onClick={() => history.goBack()} type="button">Cancel (Return to Home)</button>
         </form>
     )
 }
