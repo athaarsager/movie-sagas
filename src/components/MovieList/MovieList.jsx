@@ -15,12 +15,13 @@ function MovieList() {
   return (
     <main>
       <h1>MovieList</h1>
+      <button onClick={() => history.push("/add_movie")}>Add a New Movie!</button>
       <section className="movies">
         {movies.map(movie => {
           return (
             <div data-testid='movieItem' key={movie.id}>
               <h3>{movie.title}</h3>
-              <img data-testid="toDetails" onClick={() => history.push(`/${movie.id}`)} src={movie.poster} alt={movie.title}/>
+              <img data-testid="toDetails" onClick={() => history.push(`/movies/${movie.id}`)} src={movie.poster} alt={movie.title}/>
             </div>
           );
         })}
