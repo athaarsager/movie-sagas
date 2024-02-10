@@ -52,7 +52,7 @@ function EditDetails() {
         // This variable stores the name and value from the target
         const { name, value } = e.target;
 
-        // This populates the newMovie object with all other info using the spread operator, 
+        // This populates the movie object with all other info using the spread operator, 
         // and adds the values declared in the object above
         setMovie((currentInfo) => ({ ...currentInfo, [name]: value}));
 
