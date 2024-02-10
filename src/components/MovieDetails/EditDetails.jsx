@@ -11,6 +11,8 @@ function EditDetails() {
     const genres = useSelector(store => store.genres);
     const movieDetails = useSelector(store => store.movieDetails);
 
+    // Info on saving local state below:
+
     // key is where data should be kept in local storage
     // data is the data we are storing. Have to stringify it because local storage can only store strings
     // .setItem sets the key-value pair in local storage
@@ -104,7 +106,7 @@ function EditDetails() {
                     ))}
                 </select><br />
                 <button onClick={submitChanges}>Save</button>
-                <button onClick={() => history.goBack()} type="button">Cancel (Return to Home)</button>
+                <button onClick={() => history.goBack()} type="button">Cancel</button>
             </form>
         </>
     );
