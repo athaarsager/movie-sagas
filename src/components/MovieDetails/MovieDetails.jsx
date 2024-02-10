@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function MovieDetails() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const movieDetails = useSelector(store => store.movieDetails);
     // Grabs id from url. The variable name needs to match what it is called in the route defined in App.jsx
     const { movie_id } = useParams();
@@ -20,6 +21,7 @@ function MovieDetails() {
             <p><strong>Details:</strong></p>
             <p>{movieDetails.description}</p>
             <p><strong>Genres:</strong><em> {movieDetails.genres}</em></p>
+            <button data-testid="toList" onClick={() => history.goBack()}>Back to Movie List</button>
         </div>
     )
 }
