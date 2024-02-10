@@ -32,6 +32,7 @@ function EditDetails() {
         poster: movieDetails.poster || "",
         description: movieDetails.description || "",
         genre_id: movieDetails.genre_id || "",
+        id: params.movie_id
       };
 
     // This gets cleared on refresh...
@@ -42,7 +43,8 @@ function EditDetails() {
         title: movieDetails.title || savedMovieData.title,
         poster: movieDetails.poster || savedMovieData.poster,
         description: movieDetails.description || savedMovieData.description,
-        genre_id: movieDetails.genre_id || savedMovieData.genre_id
+        genre_id: movieDetails.genre_id || savedMovieData.genre_id,
+
     });
       
 
@@ -57,6 +59,12 @@ function EditDetails() {
         setMovie((currentInfo) => ({ ...currentInfo, [name]: value}));
 
         // Potentially add input validation here
+    }
+
+    const submitChanges = (e) => {
+        e.preventDefault();
+        // Type: "SUBMIT_CHANGES"
+        dispatch({ type: "EDIT_MOVIE", payload: movie});
     }
 
     

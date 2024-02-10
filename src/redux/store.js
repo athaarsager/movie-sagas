@@ -10,6 +10,7 @@ function* rootSaga() {
   yield takeEvery("FETCH_GENRES", fetchGenresSaga);
   yield takeEvery("GET_DETAILS", getDetailsSaga);
   yield takeEvery("ADD_MOVIE", addMovieSaga);
+  yield takeEvery("EDIT_MOVIE", editMovieSaga);
 }
 
 function* fetchAllMovies() {
@@ -50,6 +51,14 @@ function* addMovieSaga(action) {
     yield axios.post("/api/movies", action.payload);
   } catch (error) {
     console.error("ERROR in addMovieSaga POST:", error);
+  }
+}
+
+function* editMovieSaga(action) {
+  try {
+    yield axios.put(`/api/movies/${action.payload.id}`, action.payload);
+  } catch (error) {
+    console.error("ERROR in editMovieSaga PUT:", error);
   }
 }
 
