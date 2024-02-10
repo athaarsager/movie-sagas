@@ -19,7 +19,7 @@ function MovieDetails() {
             <img src={movieDetails.poster} />
             <p><strong>Details:</strong></p>
             <p>{movieDetails.description}</p>
-            <p><strong>Genres:</strong> {movieDetails.genres}</p>
+            <p><strong>Genres:</strong><em> {movieDetails.genres}</em></p>
         </div>
     )
 }
