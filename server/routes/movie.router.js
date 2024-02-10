@@ -34,14 +34,14 @@ router.get("/:id", (req, res) => {
   GROUP BY "movies"."title", "movies"."poster", "movies"."description";
   `;
   pool.query(queryText, [movieId])
-  .then(result => {
-    // Need to send the result back to store for updating then rendering
-    res.send(result.rows);
-  })
-  .catch(error => {
-    console.error("ERROR in server GET for movie details:", error);
-    res.sendStatus(500);
-  });
+    .then(result => {
+      // Need to send the result back to store for updating then rendering
+      res.send(result.rows);
+    })
+    .catch(error => {
+      console.error("ERROR in server GET for movie details:", error);
+      res.sendStatus(500);
+    });
 
 });
 
@@ -87,11 +87,48 @@ router.post('/', (req, res) => {
           // catch for second query
           console.log(err);
           res.sendStatus(500)
-      })
+        })
     }).catch(err => { // 👈 Catch for first query
       console.log(err);
       res.sendStatus(500)
     })
+})
+
+// Router for updating movie information
+router.put("/:id", (req, res) => {
+  const movieId = req.params.id;
+
+  // First query to edit movie information
+  const queryText = `
+  UPDATE "movies" SET "title" = $1, "poster" = $2, "description" = $3
+  WHERE "id" = $4;
+  `;
+
+  const updateMovieValues = [
+    req.body.title,
+    req.body.poster,
+    req.body.description,
+    movieId
+  ]
+  pool.query(queryText, updateMovieValues)
+    .then(result => {
+      // Second query to update movie genres
+      const genreQuery = `
+    UPDATE "movies_genres" SET "genre_id" = $1
+    WHERE "movie_id" = $2;
+    `;
+
+      pool.query(genreQuery, [req.body.genre_id, movieId])
+        .then(result => {
+          res.sendStatus(200);
+        }).catch(error => {
+          console.error("ERROR in server genre PUT:", error);
+          res.sendStatus(500);
+        });
+    }).catch(error => {
+      console.error("ERROR in server movie PUT:", error);
+      res.sendStatus(500);
+    });
 })
 
 module.exports = router;
