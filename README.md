@@ -52,13 +52,9 @@ My own personal goal on this project was to get a better handle on Material UI, 
 * Axios
 * Material UI
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-
-_Note, include this only if you have a license file. GitHub will generate one for you if you want!_
-
 ## Acknowledgement
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
+
+Thank you to Emerging Digital Academy for equipping me with the knowledge, resources, and support to make this application!
 
 ## Support
-If you have suggestions or issues, please email me at [youremail@whatever.com](www.google.com)
+If you have suggestions or issues, please email me at [athaarsager@gmail.com]
