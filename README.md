@@ -14,7 +14,9 @@ My own personal challenge on this project was to get a better handle on Material
 
 ## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+![Main Movie List Page](./public/Screenshots/Screenshot%202024-02-11%20at%209.24.11 AM.png)
+
+![Movie Details Page](./public/Screenshots/Screenshot%202024-02-11%20at%209.24.51 AM.png)
 
 ### Prerequisites
 
