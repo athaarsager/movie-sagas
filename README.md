@@ -45,7 +45,12 @@ My own personal goal on this project was to get a better handle on Material UI, 
 
 ## Built With
 
-List technologies and frameworks here
+* React
+* Redux
+* Postgres
+* Express
+* Axios
+* Material UI
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
