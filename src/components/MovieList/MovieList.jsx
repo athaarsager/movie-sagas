@@ -30,7 +30,7 @@ function MovieList() {
             {movies.map(movie => {
               return (
                 <Grid item xs={2}>
-                  <Card sx={{ backgroundColor: "#0288d1" }} variant="outlined" data-testid='movieItem' key={movie.id} onClick={() => history.push(`/movies/${movie.id}`)}>
+                  <Card sx={{ backgroundColor: "#0288d1", cursor: "pointer" }} variant="outlined" data-testid='movieItem' key={movie.id} onClick={() => history.push(`/movies/${movie.id}`)}>
                     <CardMedia component="img" image={movie.poster} alt={movie.title}  />
                     <CardContent>
                       <Typography variant="h4" component="div">{movie.title}</Typography>
