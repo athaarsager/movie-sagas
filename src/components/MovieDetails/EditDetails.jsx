@@ -6,7 +6,8 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import FormHelperText from "@mui/material/FormHelperText";
-import Grid from "@mui/material/Grid"
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 function EditDetails() {
 
@@ -134,13 +135,13 @@ function EditDetails() {
     }, [movie]);// Save data to local state whenever state updates
 
     return (
-        <>
-            <h2>EDIT</h2>
+        <Box sx={{ marginTop: "5%"}}>
+            <h2 style={{marginTop: "5%", marginBottom: "3%"}}>Edit Details Here!</h2>
             <form>
-                <TextField size="small" label="Movie Title" className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={movie.title} onChange={handleChange} error={validationErrors.title} helperText={"This field is required."} /><br />
-                <TextField size="small" label="Poster Url" id="url" name="poster" type="url" placeholder="www.coolmovieposter.com" value={movie.poster} onChange={handleChange} error={validationErrors.poster} helperText={"This field is required."} /><br />
-                <TextField size="small" label="Description" id="description" name="description" type="text" placeholder="Cool Description Here!" value={movie.description} onChange={handleChange} error={validationErrors.description} helperText={"This field is required."} /><br />
-                <TextField size="small" sx={{ width: "22ch" }} select label="Select Genre" id="genre" name="genre_id" onChange={handleChange} error={validationErrors.genre_id}>
+                <TextField sx={{marginBottom: ".5rem"}} size="small" label="Movie Title" className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={movie.title} onChange={handleChange} error={validationErrors.title} helperText={"This field is required."} /><br />
+                <TextField sx={{marginBottom: ".5rem"}} size="small" label="Poster Url" id="url" name="poster" type="url" placeholder="www.coolmovieposter.com" value={movie.poster} onChange={handleChange} error={validationErrors.poster} helperText={"This field is required."} /><br />
+                <TextField sx={{marginBottom: ".5rem"}} size="small" label="Description" id="description" name="description" type="text" placeholder="Cool Description Here!" value={movie.description} onChange={handleChange} error={validationErrors.description} helperText={"This field is required."} /><br />
+                <TextField sx={{ width: "22ch"}} size="small" select label="Select Genre" id="genre" name="genre_id" onChange={handleChange} error={validationErrors.genre_id}>
                     <option hidden>--Select Genre--</option>
                     {genres.map(genre => (
                         <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
@@ -158,7 +159,7 @@ function EditDetails() {
                     </Grid>
                 </Grid>
             </form>
-        </>
+        </Box>
     );
 }
 

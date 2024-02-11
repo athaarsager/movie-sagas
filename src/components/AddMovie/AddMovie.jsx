@@ -97,9 +97,9 @@ function AddMovie() {
         <Box sx={{ marginTop: "5%"}}>
             <h2 style={{marginTop: "5%", marginBottom: "3%"}}>Add a New Movie Here!</h2>
             <form>
-                <TextField size="small" label="Movie Title" className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={handleChange} error={validationErrors.title} helperText={"This field is required."} /><br />
-                <TextField size="small" label="Poster Url" id="url" name="poster" type="url" placeholder="www.coolmovieposter.com" value={newMovie.poster} onChange={handleChange} error={validationErrors.poster} helperText={"This field is required."} /><br />
-                <TextField size="small" label="Description" id="description" name="description" type="text" placeholder="Cool Description Here!" value={newMovie.description} onChange={handleChange} error={validationErrors.description} helperText={"This field is required."} /><br />
+                <TextField sx={{marginBottom: ".5rem"}} size="small" label="Movie Title" className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={handleChange} error={validationErrors.title} helperText={"This field is required."} /><br />
+                <TextField sx={{marginBottom: ".5rem"}} size="small" label="Poster Url" id="url" name="poster" type="url" placeholder="www.coolmovieposter.com" value={newMovie.poster} onChange={handleChange} error={validationErrors.poster} helperText={"This field is required."} /><br />
+                <TextField sx={{marginBottom: ".5rem"}} size="small" label="Description" id="description" name="description" type="text" placeholder="Cool Description Here!" value={newMovie.description} onChange={handleChange} error={validationErrors.description} helperText={"This field is required."} /><br />
                 <TextField size="small" sx={{ width: "22ch" }} select label="Select Genre" id="genre" name="genre_id" onChange={handleChange} error={validationErrors.genre_id}>
                     {genres.map(genre => (
                         <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
