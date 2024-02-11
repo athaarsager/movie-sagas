@@ -1,6 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CardHeader from "@mui/material/CardHeader";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 
 function MovieDetails() {
     const dispatch = useDispatch();
@@ -22,15 +29,34 @@ function MovieDetails() {
 
     return (
 
-        <div data-testid="movieDetails">
-            <h2>{movieDetails.title}</h2>
-            <img src={movieDetails.poster} alt={movieDetails.title} />
-            <p><strong>Details:</strong></p>
-            <p>{movieDetails.description}</p>
-            <p><strong>Genres:</strong><em> {movieDetails.genres}</em></p>
-            <button data-testid="toList" onClick={() => history.goBack()}>Back to Movie List</button>
-            <button onClick={() => history.push(`/movie/${params.movie_id}/edit`)}>Edit</button>
-        </div>
+        <Box display="flex" flexDirection="column" justifyContent="center" align-items="center" data-testid="movieDetails">
+            <Grid container justifyContent="center" sx={{marginBottom: 2}}>
+                <Grid item xs={6}>
+                    <Card>
+                        <CardHeader title={movieDetails.title}>
+                        </CardHeader>
+                        <CardMedia>
+                            <img src={movieDetails.poster} alt={movieDetails.title} />
+                        </CardMedia>
+                        <CardContent>
+                            <p><strong>Details:</strong></p>
+                            <p>{movieDetails.description}</p>
+                            <p><strong>Genres:</strong><em> {movieDetails.genres}</em></p>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
+            <Grid container justifyContent="center">
+                <Grid container justifyContent="center" columnSpacing={1}>
+                    <Grid item>
+                        <Button variant="contained" color="inherit" data-testid="toList" onClick={() => history.goBack()}>Back to Movie List</Button>
+                        </Grid>
+                    <Grid item>
+                        <Button variant="contained" onClick={() => history.push(`/movie/${params.movie_id}/edit`)}>Edit</Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Box>
 
     )
 }
