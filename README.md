@@ -32,14 +32,13 @@ My own personal challenge on this project was to get a better handle on Material
 6. Click the link given by `npm run client` to open a new tab with the running project!
 
 ## Usage
-How does someone use this application? Tell a user story here.
 
-1. xxx
-2. xxx
-3. xxx
-4. xxx
-5. xxx
-6. xxx
+1. The home page displays a list of movies and their posters. Click on any movie card to go to a page with details about the movie.
+2. On the movie details page, there is an edit button which will take you to a screen where you can edit the movie's information.
+3. When you are done editing, hit the "save" button and a popup confirming the success of the edit will display, and you will be taken back to the movie details page, which will now display the updated information.
+4. All screens have a back button that will take you to the previous page.
+5. On the home page again, you can click the "add movie" button to be taken to a screen where you can add a new movie.
+6. In order to add a new movie, you must completely fill out the form on the "add movie" page. Hit the "save" button when you are done, and a popup will display confirming that the movie was added. You will be taken back to the home page.
 
 
 ## Built With
