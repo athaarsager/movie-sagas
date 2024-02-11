@@ -1,6 +1,6 @@
 # PROJECT NAME
 
-Weekend Movie Sagas
+Weekend Movies Saga
 
 ## Description
 
@@ -52,7 +52,7 @@ My own personal goal on this project was to get a better handle on Material UI, 
 * Axios
 * Material UI
 
-## Acknowledgement
+## Acknowledgements
 
 Thank you to Emerging Digital Academy for equipping me with the knowledge, resources, and support to make this application!
 
