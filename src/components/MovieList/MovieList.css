@@ -2,3 +2,8 @@
     display : flex;
     flex-wrap: wrap;
 }
+
+section {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
