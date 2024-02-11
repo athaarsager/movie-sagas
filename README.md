@@ -10,7 +10,9 @@ This project is a CRUD app that is all about using redux sagas to handle request
 
 I was given a database with three tables: one for movies, one for genres, and an intermediary table that stored the relationship between movies and their genres. The project contains several pages: one displaying the list of movies along with their posters, a page for viewing movie details, a page for editing those movie details, and a page for adding a new movie for display. In order to make these pages functional, I had to use redux sagas to handle the backend requests. Along with this, I had to make a table join query in order to make the GET request function properly and make multiple queries in a single request in the case of the POST and PUT.
 
-My own personal challenge on this project was to get a better handle on Material UI, especially with form input validation. By working through this project I was able to get a better grasp on how the different MUI components work together and managed to get the input validation working with some additional research and help from ChatGPT. 
+One additional challenge that came up was to keep the movie information displayed in the inputs on the "edit" page upon refresh. In order to achieve this, I had to store the page's local state in local memory, which is then accessed upon page reload.
+
+My own personal goal on this project was to get a better handle on Material UI, especially with form input validation. By working through this project I was able to get a better grasp on how the different MUI components work together and managed to get the input validation working with some additional research and help from ChatGPT. 
 
 ## Screen Shot
 
