@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
 
 function AddMovie() {
     const dispatch = useDispatch();
@@ -61,8 +62,8 @@ function AddMovie() {
                     <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
                 ))}
             </TextField><br/>
-            <button onClick={addMovie}>Save</button>
-            <button onClick={() => history.goBack()} type="button">Cancel (Return to Home)</button>
+            <Button sx={{ marginBottom: 1, marginTop: 1}} variant="contained" onClick={addMovie}>Save</Button><br/>
+            <Button variant="contained" color="inherit" onClick={() => history.goBack()} type="button">Cancel (Return to Home)</Button>
         </form>
     )
 }
