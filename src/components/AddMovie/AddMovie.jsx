@@ -2,6 +2,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
 
 function AddMovie() {
     const dispatch = useDispatch();
@@ -50,20 +52,15 @@ function AddMovie() {
 
     return (
         <form>
-            <label htmlFor="title">Movie Title</label><br/>
-            <input className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={handleChange} required/><br/>
-            <label htmlFor="url">Poster Url</label><br/>
-            <input id="url" name="poster" type="url" placeholder="https://m.media-amazon.com/images/I/51XhnMdSQdL._AC_UF894,1000_QL80_.jpg" value={newMovie.poster} onChange={handleChange} required/><br/>
-            <label htmlFor="description">Description</label><br/>
-            <input id="description" name="description" type="text" placeholder="Kung Fu Panda is a children's animated movie starring Jack Black as the titular character: Po. It follows Po on his quest to become the Dragon Warrior..." value={newMovie.description} onChange={handleChange} required/><br/>
-            <label htmlFor="genre">Genre</label><br/>
-            <select id="genre" name="genre_id" onChange={handleChange} required>
+            <TextField size="small" label="Movie Title" className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={handleChange} required/><br/>
+            <TextField size="small" label="Poster Url" id="url" name="poster" type="url" placeholder="https://m.media-amazon.com/images/I/51XhnMdSQdL._AC_UF894,1000_QL80_.jpg" value={newMovie.poster} onChange={handleChange} required/><br/>
+            <TextField size="small" label="Description" id="description" name="description" type="text" placeholder="Kung Fu Panda is a children's animated movie starring Jack Black as the titular character: Po. It follows Po on his quest to become the Dragon Warrior..." value={newMovie.description} onChange={handleChange} required/><br/>
+            <TextField size="small" sx={{ width: "22ch"}} select label="Select Genre" id="genre" name="genre_id" onChange={handleChange} required>
                 {/*  Hidden prevents option from showing up in the dropdown menu and allows it to be the default value */}
-                <option hidden>--Select Genre--</option>
                 {genres.map(genre => (
-                    <option key={genre.id} value={genre.id}>{genre.name}</option>
+                    <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
                 ))}
-            </select><br/>
+            </TextField><br/>
             <button onClick={addMovie}>Save</button>
             <button onClick={() => history.goBack()} type="button">Cancel (Return to Home)</button>
         </form>
