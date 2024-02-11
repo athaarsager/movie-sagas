@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import FormHelperText from "@mui/material/FormHelperText";
+import Grid from "@mui/material/Grid"
 
 function EditDetails() {
 
@@ -148,8 +149,14 @@ function EditDetails() {
                 <FormHelperText>
                     {validationErrors.genre_id && "Genre is required"}
                 </FormHelperText><br />
-                <Button variant="contained" color="inherit" onClick={() => history.goBack()} type="button">Cancel</Button>
-                <Button variant="contained" onClick={submitChanges}>Save</Button>
+                <Grid container justifyContent="center" columnSpacing={1}>
+                    <Grid item>
+                        <Button variant="contained" color="inherit" onClick={() => history.goBack()} type="button">Cancel</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained" onClick={submitChanges}>Save</Button>
+                    </Grid>
+                </Grid>
             </form>
         </>
     );
