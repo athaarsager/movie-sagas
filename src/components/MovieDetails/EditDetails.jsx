@@ -112,7 +112,7 @@ function EditDetails() {
                 title: "Success!",
                 text: "Edits Saved!",
                 icon: "success",
-                confirmButtonColor: "#000080"
+                confirmButtonColor: "#42a5f5"
             });
             history.goBack();
         } else {

@@ -75,7 +75,7 @@ function AddMovie() {
                 title: "Success!",
                 text: "Movie Added! Returning to Main Page",
                 icon: "success",
-                confirmButtonColor: "#000080"
+                confirmButtonColor: "#42a5f5"
             });
             history.push("/");
         } else {
