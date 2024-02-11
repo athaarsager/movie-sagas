@@ -51,7 +51,7 @@ function MovieDetails() {
                     <Grid item>
                         <Button variant="contained" color="inherit" data-testid="toList" onClick={() => history.goBack()}>Back to Movie List</Button>
                         </Grid>
-                    <Grid item>
+                    <Grid sx={{marginBottom: 2}} item>
                         <Button variant="contained" onClick={() => history.push(`/movie/${params.movie_id}/edit`)}>Edit</Button>
                     </Grid>
                 </Grid>
