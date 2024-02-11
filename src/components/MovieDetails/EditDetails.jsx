@@ -2,6 +2,10 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+import FormHelperText from "@mui/material/FormHelperText";
 
 function EditDetails() {
 
@@ -50,6 +54,34 @@ function EditDetails() {
         id: params.movie_id
     });
 
+    const [validationErrors, setValidationErrors] = useState({
+        title: false,
+        poster: false,
+        description: false,
+        genre_id: false,
+    });
+
+    // This function should return truthy or falsey, and will be the value that determines if the dispatch fires
+    // It declares an object that compares the values of the movie keys to an empty string
+    // If key is empty, that key stores "true"
+    // Then sets local state to this array of truthy and falsey values
+    // Then uses code wizardry to see if any values are truthy. Return falsey if so
+
+    const validateForm = () => {
+        const errors = {
+            title: newMovie.title === "",
+            poster: newMovie.poster === "",
+            description: newMovie.description === "",
+            genre_id: newMovie.genre_id === "",
+        };
+        setValidationErrors(errors);
+        // convert the errors object into an array of truthy and falsey values
+        // .some checks if at least one element in an array satisfies a given condition
+        // (Boolean is a callback that converts each array value into its boolean representation)
+        // If .some finds any truthy values (errors in this case), it returns true, which we negate with the NOT operator. Wow
+        return !Object.values(errors).some(Boolean);
+    };
+
 
     const handleChange = (e) => {
 
@@ -61,20 +93,33 @@ function EditDetails() {
         // and adds the values declared in the object above
         setMovie((currentInfo) => ({ ...currentInfo, [name]: value }));
 
-        // Potentially add input validation here
+        // Input validation uses local state created above and the name declared in this function
+        // Updates validationErrors to a false value for the target input while retaining any errors for other inputs with the spread operator
+        // Should reset the error when a user starts typing. 
+
+        setValidationErrors((prevErrors) => ({ ...prevErrors, [name]: false }));
     }
 
     const submitChanges = (e) => {
         e.preventDefault();
-        // Type: "SUBMIT_CHANGES"
-        dispatch({ type: "EDIT_MOVIE", payload: movie });
-        Swal.fire({
-            title: "Success!",
-            text: "Edits Saved!",
-            icon: "success",
-            confirmButtonColor: "#000080"
-        });
-        history.goBack();
+        // Still doing input validation just to make sure no records are simply sitting empty
+        if (validateForm()) {
+            // Type: "SUBMIT_CHANGES"
+            dispatch({ type: "EDIT_MOVIE", payload: movie });
+            Swal.fire({
+                title: "Success!",
+                text: "Edits Saved!",
+                icon: "success",
+                confirmButtonColor: "#000080"
+            });
+            history.goBack();
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Unable to Process",
+                text: "All Form Fields are Required.",
+            });
+        }
     }
 
 
@@ -91,22 +136,20 @@ function EditDetails() {
         <>
             <h2>EDIT</h2>
             <form>
-                <label htmlFor="title">Movie Title</label><br />
-                <input className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={movie.title} onChange={handleChange} required /><br />
-                <label htmlFor="url">Poster Url</label><br />
-                <input id="url" name="poster" type="url" placeholder="https://m.media-amazon.com/images/I/51XhnMdSQdL._AC_UF894,1000_QL80_.jpg" value={movie.poster} onChange={handleChange} required /><br />
-                <label htmlFor="description">Description</label><br />
-                <input id="description" name="description" type="text" placeholder="Kung Fu Panda is a children's animated movie starring Jack Black as the titular character: Po. It follows Po on his quest to become the Dragon Warrior..." value={movie.description} onChange={handleChange} required /><br />
-                <label htmlFor="genre">Genre</label><br />
-                <select id="genre" name="genre_id" onChange={handleChange} required>
-                    {/*  Hidden prevents option from showing up in the dropdown menu and allows it to be the default value */}
+                <TextField size="small" label="Movie Title" className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={movie.title} onChange={handleChange} error={validationErrors.title} helperText={"This field is required."} /><br />
+                <TextField size="small" label="Poster Url" id="url" name="poster" type="url" placeholder="www.coolmovieposter.com" value={movie.poster} onChange={handleChange} error={validationErrors.poster} helperText={"This field is required."} /><br />
+                <TextField size="small" label="Description" id="description" name="description" type="text" placeholder="Cool Description Here!" value={movie.description} onChange={handleChange} error={validationErrors.description} helperText={"This field is required."} /><br />
+                <TextField size="small" sx={{ width: "22ch" }} select label="Select Genre" id="genre" name="genre_id" onChange={handleChange} error={validationErrors.genre_id}>
                     <option hidden>--Select Genre--</option>
                     {genres.map(genre => (
-                        <option key={genre.id} value={genre.id}>{genre.name}</option>
+                        <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
                     ))}
-                </select><br />
-                <button onClick={submitChanges}>Save</button>
-                <button onClick={() => history.goBack()} type="button">Cancel</button>
+                </TextField>
+                <FormHelperText>
+                    {validationErrors.genre_id && "Genre is required"}
+                </FormHelperText><br />
+                <Button variant="contained" color="inherit" onClick={() => history.goBack()} type="button">Cancel</Button>
+                <Button variant="contained" onClick={submitChanges}>Save</Button>
             </form>
         </>
     );
