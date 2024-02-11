@@ -22,14 +22,14 @@ function MovieList() {
   return (
     <main>
       <h1>MovieList</h1>
-      <Button variant="contained" sx={{ marginBottom: 2 }} onClick={() => history.push("/add_movie")}>Add a New Movie!</Button>
+      <Button variant="contained" color="secondary" sx={{ marginBottom: 2 }} onClick={() => history.push("/add_movie")}>Add a New Movie!</Button>
       <section className="movies">
-        <Box xs={{ width: "100%" }}>
+        <Box sx={{ width: "100%", marginBottom: "1rem"}}>
           <Grid container rowSpacing={1} columnSpacing={1}>
             {movies.map(movie => {
               return (
                 <Grid item xs={2}>
-                  <Card variant="outlined" data-testid='movieItem' key={movie.id} onClick={() => history.push(`/movies/${movie.id}`)}>
+                  <Card sx={{ backgroundColor: "#0288d1" }} variant="outlined" data-testid='movieItem' key={movie.id} onClick={() => history.push(`/movies/${movie.id}`)}>
                     <CardMedia component="img" image={movie.poster} alt={movie.title}  />
                     <CardContent>
                       <Typography variant="h4" component="div">{movie.title}</Typography>

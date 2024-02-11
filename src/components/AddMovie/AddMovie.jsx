@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import FormHelperText from "@mui/material/FormHelperText";
+import Box from "@mui/material/Box";
 
 function AddMovie() {
     const dispatch = useDispatch();
@@ -93,22 +94,25 @@ function AddMovie() {
     }, []);
 
     return (
-        <form>
-            <TextField size="small" label="Movie Title" className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={handleChange} error={validationErrors.title} helperText={"This field is required."} /><br />
-            <TextField size="small" label="Poster Url" id="url" name="poster" type="url" placeholder="www.coolmovieposter.com" value={newMovie.poster} onChange={handleChange} error={validationErrors.poster} helperText={"This field is required."} /><br />
-            <TextField size="small" label="Description" id="description" name="description" type="text" placeholder="Cool Description Here!" value={newMovie.description} onChange={handleChange} error={validationErrors.description} helperText={"This field is required."} /><br />
-            <TextField size="small" sx={{ width: "22ch" }} select label="Select Genre" id="genre" name="genre_id" onChange={handleChange} error={validationErrors.genre_id}>
-                {genres.map(genre => (
-                    <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
-                ))}
-            </TextField>
-            <FormHelperText>
-                {validationErrors.genre_id && "Genre is required"}
-            </FormHelperText><br />
+        <Box sx={{ marginTop: "5%"}}>
+            <h2 style={{marginTop: "5%", marginBottom: "3%"}}>Add a New Movie Here!</h2>
+            <form>
+                <TextField size="small" label="Movie Title" className="movie-input" id="title" name="title" type="text" placeholder="Movie Title" value={newMovie.title} onChange={handleChange} error={validationErrors.title} helperText={"This field is required."} /><br />
+                <TextField size="small" label="Poster Url" id="url" name="poster" type="url" placeholder="www.coolmovieposter.com" value={newMovie.poster} onChange={handleChange} error={validationErrors.poster} helperText={"This field is required."} /><br />
+                <TextField size="small" label="Description" id="description" name="description" type="text" placeholder="Cool Description Here!" value={newMovie.description} onChange={handleChange} error={validationErrors.description} helperText={"This field is required."} /><br />
+                <TextField size="small" sx={{ width: "22ch" }} select label="Select Genre" id="genre" name="genre_id" onChange={handleChange} error={validationErrors.genre_id}>
+                    {genres.map(genre => (
+                        <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
+                    ))}
+                </TextField>
+                <FormHelperText>
+                    {validationErrors.genre_id && "Genre is required"}
+                </FormHelperText><br />
 
-            <Button sx={{ marginBottom: 1 }} variant="contained" onClick={addMovie}>Save</Button><br />
-            <Button variant="contained" color="inherit" onClick={() => history.goBack()} type="button">Cancel (Return to Home)</Button>
-        </form>
+                <Button sx={{ marginBottom: 1 }} variant="contained" onClick={addMovie}>Save</Button><br />
+                <Button variant="contained" color="inherit" onClick={() => history.goBack()} type="button">Cancel (Return to Home)</Button>
+            </form>
+        </Box>
     )
 }
 

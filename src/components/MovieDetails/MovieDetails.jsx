@@ -32,7 +32,7 @@ function MovieDetails() {
         <Box display="flex" flexDirection="column" justifyContent="center" align-items="center" data-testid="movieDetails">
             <Grid container justifyContent="center" sx={{marginBottom: 2}}>
                 <Grid item xs={6}>
-                    <Card>
+                    <Card sx={{ backgroundColor: "#e3f2fd"}}>
                         <CardHeader title={movieDetails.title}>
                         </CardHeader>
                         <CardMedia>
