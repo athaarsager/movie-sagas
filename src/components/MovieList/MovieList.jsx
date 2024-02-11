@@ -22,7 +22,8 @@ function MovieList() {
   return (
     <main>
       <h1>MovieList</h1>
-      <Button variant="contained" color="secondary" sx={{ marginBottom: 2 }} onClick={() => history.push("/add_movie")}>Add a New Movie!</Button>
+      <Button variant="contained" color="secondary" sx={{ marginBottom: 1 }} onClick={() => history.push("/add_movie")}>Add a New Movie!</Button>
+      <p>Click a Movie to Learn More About it!</p>
       <section className="movies">
         <Box sx={{ width: "100%", marginBottom: "1rem"}}>
           <Grid container rowSpacing={1} columnSpacing={1}>
