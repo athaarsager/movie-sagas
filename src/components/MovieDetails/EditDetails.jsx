@@ -71,10 +71,10 @@ function EditDetails() {
 
     const validateForm = () => {
         const errors = {
-            title: newMovie.title === "",
-            poster: newMovie.poster === "",
-            description: newMovie.description === "",
-            genre_id: newMovie.genre_id === "",
+            title: movie.title === "",
+            poster: movie.poster === "",
+            description: movie.description === "",
+            genre_id: movie.genre_id === "",
         };
         setValidationErrors(errors);
         // convert the errors object into an array of truthy and falsey values
